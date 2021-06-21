@@ -326,7 +326,6 @@ GameObject:
   - component: {fileID: 217478202}
   - component: {fileID: 217478201}
   - component: {fileID: 217478200}
-  - component: {fileID: 217478199}
   - component: {fileID: 217478198}
   m_Layer: 0
   m_Name: Main Camera (1)
@@ -348,18 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 558667171}
---- !u!114 &217478199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217478197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67d2766c80eb9542b45f4bd9d02639a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 6, z: -8}
 --- !u!81 &217478200
 AudioListener:
   m_ObjectHideFlags: 0
@@ -367,7 +355,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217478197}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &217478201
 Camera:
   m_ObjectHideFlags: 0
@@ -596,7 +584,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
@@ -670,18 +657,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67d2766c80eb9542b45f4bd9d02639a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 953679914}
+  offset: {x: 0, y: 6, z: -8}
 --- !u!1001 &558667170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -769,12 +745,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d381cb46a01fc64fb67e9845d6f30f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  subCam: {fileID: 1820318665}
+  horsePower: 20
   turnSpeed: 25
   horizontalInput: 0
   verticalInput: 0
   switchkey: 303
-  subCam: {fileID: 1820318665}
   inputId: 2
 --- !u!54 &558667173
 Rigidbody:
@@ -896,7 +872,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701425516}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &701425518
 Camera:
   m_ObjectHideFlags: 0
@@ -1192,12 +1168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d381cb46a01fc64fb67e9845d6f30f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  subCam: {fileID: 701425518}
+  horsePower: 20
   turnSpeed: 25
   horizontalInput: 0
   verticalInput: 0
   switchkey: 304
-  subCam: {fileID: 701425518}
   inputId: 1
 --- !u!1001 &974359749
 PrefabInstance:
@@ -1850,7 +1826,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820318662}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1820318665
 Camera:
   m_ObjectHideFlags: 0

@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 20.0f;
+    Camera mainCam;
+    public Camera subCam;
+    private Rigidbody playerRb;
+
+    // [SerializeField] private float speed = 20.0f;
+    [SerializeField] private float horsePower = 20.0f;
     [SerializeField] private float turnSpeed = 45.0f;
 
     public float horizontalInput;
     public float verticalInput;
     public KeyCode switchkey;
-    Camera mainCam;
-    public Camera subCam;
     public float inputId;
 
     void Awake()
     {
+        playerRb = GetComponent<Rigidbody>();
         mainCam = Camera.main;
         mainCam.enabled = true;
         subCam.enabled = false;
@@ -48,7 +52,8 @@ public class PlayerController : MonoBehaviour
             }
 
             // Moves the vehicle foward based on vertical Input
-            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+            // transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+            playerRb.AddRelativeForce(Vector3.forward * verticalInput * horsePower);
             // Roates the vehicle based on horizontal Input
             transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
         }
@@ -66,7 +71,8 @@ public class PlayerController : MonoBehaviour
             }
 
             // Moves the vehicle foward based on vertical Input
-            transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+            // transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
+            playerRb.AddRelativeForce(Vector3.forward * verticalInput * horsePower);
             // Roates the vehicle based on horizontal Input
             transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
         }
