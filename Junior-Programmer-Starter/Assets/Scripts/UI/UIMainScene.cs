@@ -42,7 +42,7 @@ public class UIMainScene : MonoBehaviour
         //This is not the most efficient, as we reconstruct everything every time. A more efficient way would check if
         //there was some change since last time (could be made through a IsDirty function in the interface) or smarter
         //update (match an entry content ta type and just update the count) but simplicity in this tutorial we do that
-        //every time, this won't be a bottleneck here. 
+        //every time, this won't be a bottleneck here.
 
         InfoPopup.Data.text = m_CurrentContent.GetData();
         
@@ -72,5 +72,10 @@ public class UIMainScene : MonoBehaviour
             m_CurrentContent = content;
             InfoPopup.Name.text = content.GetName();
         }
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
