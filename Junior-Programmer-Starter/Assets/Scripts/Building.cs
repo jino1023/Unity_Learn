@@ -56,6 +56,7 @@ public abstract class Building : MonoBehaviour,
     }
 
     //return how much was actually removed, will be 0 if couldn't get any.
+
     public int GetItem(string resourceId, int requestAmount)
     {
         int found = m_Inventory.FindIndex(item => item.ResourceId == resourceId);
