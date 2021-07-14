@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -15,12 +15,14 @@ public class MenuUIHandler : MonoBehaviour
     public void NewColorSelected(Color color)
     {
         // add code here to handle when a color is selected
+        MainManager.Instance.TeamColor = color;
     }
     
     private void Start()
     {
         ColorPicker.Init();
         //this will call the NewColorSelected function when the color picker have a color button clicked.
+        // will call the newcolorseleted
         ColorPicker.onColorChanged += NewColorSelected;
     }
 
