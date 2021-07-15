@@ -40,6 +40,7 @@ public class UserControl : MonoBehaviour
                 //if there is none, this will be null, so this will hid the panel if it was displayed
                 var uiInfo = hit.collider.GetComponentInParent<UIMainScene.IUIInfoContent>();
                 UIMainScene.Instance.SetNewInfoContent(uiInfo);
+
             }
         }
         else if (m_Selected != null && Input.GetMouseButtonDown(1))
