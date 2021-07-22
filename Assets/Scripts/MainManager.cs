@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
+    public static MainManager Instance;
+
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
@@ -18,8 +20,18 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+    }
+
     void Start()
     {
         const float step = 0.6f;
@@ -30,6 +42,7 @@ public class MainManager : MonoBehaviour
         {
             for (int x = 0; x < perLine; ++x)
             {
+                // brick=inst
                 Vector3 position = new Vector3(-1.5f + step * x, 2.5f + i * 0.3f, 0);
                 var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
                 brick.PointValue = pointCountArray[i];
@@ -73,4 +86,5 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
+
 }
