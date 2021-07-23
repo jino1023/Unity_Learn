@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
-    public static MainManager Instance;
 
     public Brick BrickPrefab;
     public int LineCount = 6;
     public Rigidbody Ball;
 
+    public Text BestScore;
     public Text ScoreText;
     public GameObject GameOverText;
     
@@ -19,18 +19,6 @@ public class MainManager : MonoBehaviour
     private int m_Points;
     
     private bool m_GameOver = false;
-
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-    }
 
     void Start()
     {
@@ -49,12 +37,14 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        SetBestScore();
     }
 
     private void Update()
     {
         if (!m_Started)
-        {
+        {   
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 m_Started = true;
@@ -71,8 +61,14 @@ public class MainManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                SetBestScore();
             }
         }
+    }
+
+    void SetBestScore()
+    {
+        BestScore.text = $"Best Score : {GameManager.Instance.best_name} : {GameManager.Instance.best_score}";
     }
 
     void AddPoint(int point)
@@ -85,6 +81,24 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+
+        // Compare Score
+        CompareScore();
+    }
+
+    void CompareScore()
+    {
+        if (GameManager.Instance.best_score < m_Points)
+        {
+            GameManager.Instance.score = m_Points;
+            BestScore.text = $"Best Score : {GameManager.Instance.user_name} : {GameManager.Instance.score}";
+            // Save Score
+            GameManager.Instance.SaveScore();
+        }
+        else
+        {
+            BestScore.text = $"Best Score : {GameManager.Instance.best_name} : {GameManager.Instance.best_score}";
+        }
     }
 
 }
