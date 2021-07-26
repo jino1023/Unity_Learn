@@ -37,7 +37,7 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-
+        GameManager.Instance.LoadScore();
         SetBestScore();
     }
 
@@ -63,12 +63,16 @@ public class MainManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 SetBestScore();
             }
+            else if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
     void SetBestScore()
     {
-        BestScore.text = $"Best Score : {GameManager.Instance.best_name} : {GameManager.Instance.best_score}";
+        BestScore.text = "Best Score : "+GameManager.Instance.BestScore();
     }
 
     void AddPoint(int point)
@@ -79,26 +83,10 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameManager.Instance.CompareScore(m_Points);
+        GameManager.Instance.SaveScore();
         m_GameOver = true;
         GameOverText.SetActive(true);
-
-        // Compare Score
-        CompareScore();
-    }
-
-    void CompareScore()
-    {
-        if (GameManager.Instance.best_score < m_Points)
-        {
-            GameManager.Instance.score = m_Points;
-            BestScore.text = $"Best Score : {GameManager.Instance.user_name} : {GameManager.Instance.score}";
-            // Save Score
-            GameManager.Instance.SaveScore();
-        }
-        else
-        {
-            BestScore.text = $"Best Score : {GameManager.Instance.best_name} : {GameManager.Instance.best_score}";
-        }
     }
 
 }

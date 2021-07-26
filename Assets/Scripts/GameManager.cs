@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,10 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public string user_name = "";
-    public string best_name = "";
-    public int score;
-    public int best_score;
+    public string[] user_names = new string[3];
+    public string[] scores = new string[3];
+    public string player_name;
+    private int user_displayed = 3;
 
     private void Awake()
     {
@@ -24,24 +25,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    [System.Serializable]
+    [Serializable]
     class SaveData
     {
-        public string username;
-        public int score;
+        public string[] usernames = new string[3];
+        public string[] scores = new string[3];
     }
 
     public void SaveScore()
     {
         SaveData data = new SaveData();
-        data.username = user_name;
-        data.score = score;
+        data.usernames = user_names;
+        data.scores = scores;
 
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
-    
+
     public void LoadScore()
     {
         string path = Application.persistentDataPath + "/savefile.json";
@@ -50,13 +51,71 @@ public class GameManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            best_name = data.username;
-            best_score = data.score;
+            user_names = data.usernames;
+            scores = data.scores;
         }
-        else
+    }
+
+    public string BestScore()
+    {
+        if (user_names[0] == null || user_names[0] == "")
         {
-            best_name = "none";
-            best_score = 0;
+            return "No Scores";
+        }
+        return user_names[0] + ": " + scores[0];
+    }
+
+    public string ScoreBoard()
+    {
+        if (user_names[0] == null || user_names[0] == "")
+        {
+            return "No Scores";
+        }
+
+        string scoreBoard = "";
+
+        for (int i = 0; i < user_displayed; i++)
+        {
+            if (user_names[i] != null && user_names[i] != "")
+                scoreBoard += user_names[i] + ": " + scores[i] + "\n";
+        }
+        return scoreBoard;
+    }
+
+    public void CompareScore(int score)
+    {
+        for (int i = 0; i < user_displayed; i++)
+        {
+            int boardScore;
+            if (scores[i] == null || scores[i] == "")
+            {
+                boardScore = 0;
+            } 
+            else
+            {
+                boardScore = int.Parse(scores[i]);
+            }
+
+            if (boardScore < score)
+            {
+                string tampN = user_names[i];
+                string tampS = scores[i];
+                user_names[i] = player_name;
+                scores[i] = score.ToString();
+                i++;
+
+                while (i < user_displayed)
+                {
+                    string temp = user_names[i];
+                    user_names[i] = tampN;
+                    tampN = temp;
+                    temp = scores[i];
+                    scores[i] = tampS;
+                    tampS = temp;
+                    i++;
+                }
+                return;
+            }
         }
     }
 }

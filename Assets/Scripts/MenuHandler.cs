@@ -13,12 +13,12 @@ public class MenuHandler : MonoBehaviour
     void Start()
     {
         GameManager.Instance.LoadScore();
-        scoreText.text = "Best Score" + "<br>" + $"{GameManager.Instance.best_name} : {GameManager.Instance.best_score}";
+        scoreText.text = "Best Score" +"<br>"+ GameManager.Instance.ScoreBoard();
     }
 
     public void SetName(string username)
     {
-        GameManager.Instance.user_name = username;
+        GameManager.Instance.player_name = username;
     }
 
     public void GoToMain()
