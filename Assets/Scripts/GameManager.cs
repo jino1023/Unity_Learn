@@ -11,7 +11,8 @@ public class GameManager : MonoBehaviour
     public string[] user_names = new string[3];
     public string[] scores = new string[3];
     public string player_name;
-    private int user_displayed = 3;
+    // 
+    private int user_stored = 3;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
         public string[] scores = new string[3];
     }
 
+    // save data using json
     public void SaveScore()
     {
         SaveData data = new SaveData();
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
     }
 
+    // load data
     public void LoadScore()
     {
         string path = Application.persistentDataPath + "/savefile.json";
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
+            
 
             user_names = data.usernames;
             scores = data.scores;
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
         return user_names[0] + ": " + scores[0];
     }
 
+    // return saved username + scores
     public string ScoreBoard()
     {
         if (user_names[0] == null || user_names[0] == "")
@@ -74,7 +79,7 @@ public class GameManager : MonoBehaviour
 
         string scoreBoard = "";
 
-        for (int i = 0; i < user_displayed; i++)
+        for (int i = 0; i < user_stored; i++)
         {
             if (user_names[i] != null && user_names[i] != "")
                 scoreBoard += user_names[i] + ": " + scores[i] + "\n";
@@ -82,9 +87,10 @@ public class GameManager : MonoBehaviour
         return scoreBoard;
     }
 
+    // save new scores compared to existing saved scores
     public void CompareScore(int score)
     {
-        for (int i = 0; i < user_displayed; i++)
+        for (int i = 0; i < user_stored; i++)
         {
             int boardScore;
             if (scores[i] == null || scores[i] == "")
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour
                 scores[i] = score.ToString();
                 i++;
 
-                while (i < user_displayed)
+                while (i < user_stored)
                 {
                     string temp = user_names[i];
                     user_names[i] = tampN;

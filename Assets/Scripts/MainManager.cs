@@ -37,6 +37,7 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+        // load socre from json file and set best score
         GameManager.Instance.LoadScore();
         SetBestScore();
     }
@@ -45,6 +46,7 @@ public class MainManager : MonoBehaviour
     {
         if (!m_Started)
         {   
+            // if spacekey down start game
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 m_Started = true;
@@ -54,15 +56,18 @@ public class MainManager : MonoBehaviour
 
                 Ball.transform.SetParent(null);
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
+                
             }
         }
         else if (m_GameOver)
         {
+            // if space key down when gameover then restart game scene
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 SetBestScore();
             }
+            // if r key down when gameover then go to menu scene
             else if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(0);
@@ -70,17 +75,21 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    // set best score
     void SetBestScore()
     {
         BestScore.text = "Best Score : "+GameManager.Instance.BestScore();
     }
 
+    // add point
     void AddPoint(int point)
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
     }
 
+
+    // run when game over
     public void GameOver()
     {
         GameManager.Instance.CompareScore(m_Points);
