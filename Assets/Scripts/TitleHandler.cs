@@ -9,7 +9,7 @@ public class TitleHandler : MonoBehaviour
 {
     public TextMeshProUGUI nameField;
 
-    public void GoToMainScene()
+    private void GoToMainScene()
     {
         if (GameManager.Instance != null)
         {
@@ -23,7 +23,7 @@ public class TitleHandler : MonoBehaviour
         GameManager.Instance.player_name = username;
     }
 
-    public void Exit()
+    private void Exit()
     {
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
