@@ -15,13 +15,16 @@ public class Test : MonoBehaviour
         if (GUILayout.Button("ClearLog"))
             log = "";
 
+        #region login, logout
         if (GUILayout.Button("Login"))
             GPGSBinder.Inst.Login((success, localUser) =>
             log = $"{success}, {localUser.userName}, {localUser.id}, {localUser.state}, {localUser.underage}");
 
         if (GUILayout.Button("Logout"))
             GPGSBinder.Inst.Logout();
+        #endregion
 
+        #region cloud system
         if (GUILayout.Button("SaveCloud"))
             GPGSBinder.Inst.SaveCloud("mysave", "want data", success => log = $"{success}");
 
@@ -30,7 +33,9 @@ public class Test : MonoBehaviour
 
         if (GUILayout.Button("DeleteCloud"))
             GPGSBinder.Inst.DeleteCloud("mysave", success => log = $"{success}");
+        #endregion
 
+        #region achievement
         if (GUILayout.Button("ShowAchievementUI"))
             GPGSBinder.Inst.ShowAchievementUI();
 
@@ -42,7 +47,9 @@ public class Test : MonoBehaviour
 
         if (GUILayout.Button("IncrementAchievement_thrid"))
             GPGSBinder.Inst.IncrementAchievement(GPGSIds.achievement_thrid, 1, success => log = $"{success}");
+        #endregion
 
+        #region leaderboard
         if (GUILayout.Button("ShowAllLeaderboardUI"))
             GPGSBinder.Inst.ShowAllLeaderboardUI();
 
@@ -69,7 +76,9 @@ public class Test : MonoBehaviour
                     for (int i = 0; i < scores.Length; i++)
                         log += $"{i}, {scores[i].rank}, {scores[i].value}, {scores[i].userID}, {scores[i].date}\n";
                 });
+        #endregion
 
+        #region event
         if (GUILayout.Button("IncrementEvent_event"))
             GPGSBinder.Inst.IncrementEvent(GPGSIds.event_event, 1);
 
@@ -86,6 +95,7 @@ public class Test : MonoBehaviour
                 foreach (var iEvent in iEvents)
                     log += $"{iEvent.Name}, {iEvent.CurrentCount}\n";
             });
+        #endregion
 
         GUILayout.Label(log);
     }
