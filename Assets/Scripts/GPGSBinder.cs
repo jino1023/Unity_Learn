@@ -82,7 +82,7 @@ public class GPGSBinder
                 }
             });
     }
-
+ 
     public void DeleteCloud(string fileName, Action<bool> onCloudDeleted = null)
     {
         SavedGame.OpenWithAutomaticConflictResolution(fileName,
