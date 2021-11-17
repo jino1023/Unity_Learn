@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    #region ΩÃ±€≈Ê
+    #region Singleton
     private static GameManager _instance = null;
 
     public static GameManager Instance
