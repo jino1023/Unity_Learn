@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject PanOption;
+    public GameObject PanBlack;
     #region Singleton
     private static UIManager _instance = null;
 
@@ -38,8 +39,22 @@ public class UIManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        StartCoroutine("FadeBlack");
     }
     #endregion
+
+    IEnumerator FadeBlack()
+    {
+        for (float ft = 1f; ft >= 0; ft -= 0.002f)
+        {
+            Color c = PanBlack.GetComponent<Image>().color;
+            c.a = ft;
+            PanBlack.GetComponent<Image>().color = c;
+            yield return null;
+        }
+        PanBlack.SetActive(false);
+    }
 
     #region Button Event
     public void OnOptionBtnClicked()
