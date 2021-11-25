@@ -24,7 +24,7 @@ public class Test : MonoBehaviour
             GPGSBinder.Inst.Logout();
         #endregion
 
-        #region cloud system
+        #region Cloud system
         if (GUILayout.Button("SaveCloud"))
             GPGSBinder.Inst.SaveCloud("mysave", "want data", success => log = $"{success}");
 
