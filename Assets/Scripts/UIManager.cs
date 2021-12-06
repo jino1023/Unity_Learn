@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        // 시작시 검은화면에서 점점 밝게하는 효과
+        //
         StartCoroutine("FadeBlack");
     }
     #endregion
