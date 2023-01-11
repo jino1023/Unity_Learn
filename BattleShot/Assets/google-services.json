@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "159590171991",
+    "project_id": "gpgs-32285427",
+    "storage_bucket": "gpgs-32285427.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159590171991:android:fb9317fbdf9b68a327ea12",
+        "android_client_info": {
+          "package_name": "com.jiny.battleshot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159590171991-ajutp9no7vqu0io7s0u2hujqkh8jmnc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jiny.battleshot",
+            "certificate_hash": "a877692a4c83c50283604978f9fe8c9ad1f9d15c"
+          }
+        },
+        {
+          "client_id": "159590171991-javckaep16bulj4a8ascjqlbosns82q9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jiny.battleshot",
+            "certificate_hash": "298d57c4298ff5f438ad8de9259d0652dcb70002"
+          }
+        },
+        {
+          "client_id": "159590171991-hsu4vrqdhqruqkp3o0kk29cvf3emeal8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSSujgAs6u83duZBhr5wxZh-Fr7DOG6Sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159590171991-hsu4vrqdhqruqkp3o0kk29cvf3emeal8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
